@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  english: MyString
+  article: MyString
+  german: MyString
+  done_article: false
+  done_german: false
+
+two:
+  english: MyString
+  article: MyString
+  german: MyString
+  done_article: false
+  done_german: false
