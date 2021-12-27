@@ -2,10 +2,11 @@
   <tbody>
   <% @entities.each do |entity| %>
     <tr>
-      <td><%= entity.german %></td>
-      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Der' %>"></td>
-      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Die' %>"></td>
-      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Das' %>"></td>
+      <td><%= entity.english %></td>
+      <% answers = (@dictionary - [entity.german]).shuffle.take(2) << entity.german %>
+      <% answers.each do |answer| %>
+        <td><label><input type="checkbox" name="article" role="<%= 'correct' if entity.german == answer %>"><%= answer %></label></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

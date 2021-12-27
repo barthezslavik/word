@@ -1,17 +1,11 @@
 <table>
   <tbody>
-  <thead>
-    <th></th>
-    <th>Der</th>
-    <th>Die</th>
-    <th>Das</th>
-  </thead>
   <% @entities.each do |entity| %>
     <tr>
       <td><%= entity.german %></td>
-      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Der' %>"></td>
-      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Die' %>"></td>
-      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Das' %>"></td>
+      <td><label><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Der' %>">Der</label></td>
+      <td><label><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Die' %>">Die</label></td>
+      <td><label><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Das' %>">Das</label></td>
     </tr>
   <% end %>
   </tbody>
