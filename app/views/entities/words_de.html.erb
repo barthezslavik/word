@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+  <% @entities.each do |entity| %>
+    <tr>
+      <td><%= entity.german %></td>
+      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Der' %>"></td>
+      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Die' %>"></td>
+      <td><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Das' %>"></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+<table>
+  <tbody>
+  <% @entities.each do |entity| %>
+    <tr>
+      <td><%= entity.german %></td>
+      <% answers = (@dictionary - [entity.english]).shuffle.take(2) << entity.english %>
+      <% answers.each do |answer| %>
+        <td><label><input type="checkbox" name="article" role="<%= 'correct' if entity.english == answer %>"><%= answer %></label></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

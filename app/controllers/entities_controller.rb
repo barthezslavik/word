@@ -10,11 +10,16 @@ class EntitiesController < ApplicationController
   end
 
   def articles
-    @entities = Entity.where(done_article: true, article: Entity::ARTICLES)
+    @entities = Entity.where(done_article: true, article: Entity::ARTICLES).shuffle
   end
 
   def words
+    @entities = Entity.where(done_article: true, done_german: true).shuffle
+    @dictionary = Entity.pluck(:english)
+  end
 
+  def words_de
+    @entities = Entity.where(done_article: true, done_german: true).shuffle
   end
 
   # GET /entities or /entities.json
