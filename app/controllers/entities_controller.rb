@@ -11,7 +11,8 @@ class EntitiesController < ApplicationController
 
   # GET /entities or /entities.json
   def index
-    @entities = Entity.all#.order("article desc")
+    @entities = Entity.all
+    @done = Entity.where(done_article: true, done_german: true).count
   end
 
   # GET /entities/1 or /entities/1.json

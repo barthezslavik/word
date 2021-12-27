@@ -1,11 +1,12 @@
-<p id="notice"><%= notice %></p>
 
 <table style="">
   <tbody>
+    <tr>
+      <td><%= @entities.count - @done %></td>
+    </tr>
     <% @entities.each do |entity| %>
-      <% next if entity.done_article && entity.done_german %>
+      <% next if entity.done? %>
       <tr>
-<!--        <td><%#= entity.id %></td>-->
         <td><%= entity.english %></td>
         <td><%= check_box_tag entity.done_article, 1, entity.done_article, data: { id: entity.id, role: 'done_article' } %></td>
         <td><%= entity.article %></td>
