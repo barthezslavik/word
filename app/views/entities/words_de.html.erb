@@ -1,6 +1,6 @@
 <table>
   <tbody>
-  <% @entities.each do |entity| %>
+  <% @entities.take(100).each do |entity| %>
     <tr>
       <td><%= entity.english %></td>
       <% answers = (@dictionary - [entity.german]).shuffle.take(2) << entity.german %>

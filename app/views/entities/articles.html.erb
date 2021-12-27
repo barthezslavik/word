@@ -1,6 +1,6 @@
 <table>
   <tbody>
-  <% @entities.each do |entity| %>
+  <% @entities.take(100).each do |entity| %>
     <tr>
       <td><%= entity.german %></td>
       <td><label><input type="checkbox" name="article" role="<%= 'correct' if entity.article == 'Der' %>">Der</label></td>
