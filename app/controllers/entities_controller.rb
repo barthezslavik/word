@@ -10,16 +10,16 @@ class EntitiesController < ApplicationController
   end
 
   def articles
-    @entities = Entity.where(done_article: true, article: Entity::ARTICLES).shuffle
+    @entities = Entity.where(done_article: true, article: Entity::ARTICLES).limit(100).shuffle
   end
 
   def words
-    @entities = Entity.where(done_article: true, done_german: true).shuffle
+    @entities = Entity.where(done_article: true, done_german: true).limit(100).shuffle
     @dictionary = Entity.pluck(:english)
   end
 
   def words_de
-    @entities = Entity.where(done_article: true, done_german: true).shuffle
+    @entities = Entity.where(done_article: true, done_german: true).limit(100).shuffle
     @dictionary = Entity.pluck(:german)
   end
 
