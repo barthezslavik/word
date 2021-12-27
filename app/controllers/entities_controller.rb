@@ -10,7 +10,7 @@ class EntitiesController < ApplicationController
   end
 
   def articles
-
+    @entities = Entity.where(done_article: true, article: Entity::ARTICLES)
   end
 
   def words
@@ -24,7 +24,6 @@ class EntitiesController < ApplicationController
       @done = Entity.where(article: params[:article], done_article: true, done_german: true).count
     else
       @entities = Entity.all
-      @done = Entity.where(done_article: true, done_german: true).count
     end
   end
 
