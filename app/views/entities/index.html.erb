@@ -10,9 +10,9 @@
       <% next if entity.done? %>
       <tr>
         <td><%= entity.english %></td>
-        <td><%= check_box_tag entity.done_article, 1, entity.done_article, data: { id: entity.id, role: 'done_article' } %></td>
+        <td><%= check_box_tag 'dictionary', 1, entity.done_article, data: { id: entity.id, role: 'done_article' } %></td>
         <td><a href="?article=<%= entity.article %>"><%= entity.article %></a></td>
-        <td><%= check_box_tag entity.done_german, 1, entity.done_german, data: { id: entity.id, role: 'done_german' } %></td>
+        <td><%= check_box_tag 'dictionary', 1, entity.done_german, data: { id: entity.id, role: 'done_german' } %></td>
         <td><%= entity.german %></td>
       </tr>
     <% end %>

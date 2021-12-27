@@ -1,5 +1,5 @@
 $(document).ready ->
-  $('input[type=checkbox]').click ->
+  $('[name=dictionary]').click ->
     id = $(this).data('id')
     role = $(this).data('role')
     checked = $(this).prop('checked')
@@ -15,3 +15,11 @@ $(document).ready ->
       type: 'POST',
       url: '/entities/learn'
       data: data
+
+  $('[name=article]').click ->
+    role = $(this).attr('role')
+    $tr = $(this).closest('tr')
+    console.log(role)
+
+    if(role == 'correct')
+      $tr.hide()
