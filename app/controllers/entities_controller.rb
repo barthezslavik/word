@@ -9,10 +9,23 @@ class EntitiesController < ApplicationController
     head :ok
   end
 
+  def articles
+
+  end
+
+  def words
+
+  end
+
   # GET /entities or /entities.json
   def index
-    @entities = Entity.all
-    @done = Entity.where(done_article: true, done_german: true).count
+    if params[:article]
+      @entities = Entity.where(article: params[:article])
+      @done = Entity.where(article: params[:article], done_article: true, done_german: true).count
+    else
+      @entities = Entity.all
+      @done = Entity.where(done_article: true, done_german: true).count
+    end
   end
 
   # GET /entities/1 or /entities/1.json
