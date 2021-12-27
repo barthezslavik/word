@@ -4,7 +4,7 @@
     <tr>
       <td><%= entity.english %></td>
       <% answers = (@dictionary - [entity.german]).shuffle.take(2) << entity.german %>
-      <% answers.each do |answer| %>
+      <% answers.shuffle.each do |answer| %>
         <td><label><input type="checkbox" name="article" role="<%= 'correct' if entity.german == answer %>"><%= answer %></label></td>
       <% end %>
     </tr>
