@@ -3,9 +3,15 @@
 class EntitiesController < ApplicationController
   before_action :set_entity, only: %i[show edit update destroy]
 
+  def learn
+    entity = Entity.find(params['entity']['id'])
+    entity.update(entity_params.except('id'))
+    head :ok
+  end
+
   # GET /entities or /entities.json
   def index
-    @entities = Entity.order("article desc")
+    @entities = Entity.all#.order("article desc")
   end
 
   # GET /entities/1 or /entities/1.json

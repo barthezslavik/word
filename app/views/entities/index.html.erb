@@ -3,15 +3,14 @@
 <table style="">
   <tbody>
     <% @entities.each do |entity| %>
+      <% next if entity.done_article && entity.done_german %>
       <tr>
-        <td><%= entity.id %></td>
+<!--        <td><%#= entity.id %></td>-->
         <td><%= entity.english %></td>
-        <td><%= check_box_tag entity.done_article %></td>
+        <td><%= check_box_tag entity.done_article, 1, entity.done_article, data: { id: entity.id, role: 'done_article' } %></td>
         <td><%= entity.article %></td>
-        <td><%= check_box_tag entity.done_german %></td>
+        <td><%= check_box_tag entity.done_german, 1, entity.done_german, data: { id: entity.id, role: 'done_german' } %></td>
         <td><%= entity.german %></td>
-        <td><%= entity.done_article %></td>
-        <td><%= entity.done_german %></td>
       </tr>
     <% end %>
   </tbody>
