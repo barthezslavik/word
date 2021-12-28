@@ -6,7 +6,7 @@
       <% correct = "#{entity.article} #{entity.german}" %>
       <% answers = (@dictionary - [correct]).shuffle.take(2) << correct %>
       <% answers.shuffle.each do |answer| %>
-        <td><label><input type="checkbox" name="article" role="<%= 'correct' if correct == answer %>"><%= answer %></label></td>
+        <td><label <%=raw color(answer) %>><input type="checkbox" name="article" role="<%= 'correct' if correct == answer %>"><%= answer %></label></td>
       <% end %>
     </tr>
   <% end %>
