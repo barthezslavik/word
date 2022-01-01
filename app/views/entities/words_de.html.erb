@@ -1,10 +1,11 @@
 <table>
   <tbody>
-  <% @entities.take(100).each do |entity| %>
+  <% @entities.take(Entity::TAKE).each do |entity| %>
     <tr>
+      <td><input type="checkbox" name="similar" data-id="<%= entity.id %>"></td>
       <td><%= entity.english %></td>
       <% correct = "#{entity.article} #{entity.german}" %>
-      <% answers = (@dictionary - [correct]).shuffle.take(2) << correct %>
+      <% answers = (@dictionary - [correct]).shuffle.take(Entity::ANSWERS - 1) << correct %>
       <% answers.shuffle.each do |answer| %>
         <td><label <%=raw color(answer) %>><input type="checkbox" name="article" role="<%= 'correct' if correct == answer %>"><%= answer %></label></td>
       <% end %>

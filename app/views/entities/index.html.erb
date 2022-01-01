@@ -1,5 +1,5 @@
 
-<table style="">
+<table>
   <tbody>
     <tr>
       <td></td>
@@ -7,8 +7,9 @@
       <td><% if params[:article] %><a href="/">[x]</a><% end %></td>
     </tr>
     <% @entities.each do |entity| %>
-      <% next if entity.done? %>
+      <% next if entity.done_article? %>
       <tr>
+        <td><input type="checkbox" name="similar" data-id="<%= entity.id %>"></td>
         <td><%= entity.english %></td>
         <td><%= check_box_tag 'dictionary', 1, entity.done_article, data: { id: entity.id, role: 'done_article' } %></td>
         <td><a href="?article=<%= entity.article %>"><%= entity.article %></a></td>

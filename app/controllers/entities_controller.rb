@@ -9,28 +9,35 @@ class EntitiesController < ApplicationController
     head :ok
   end
 
+  def similar
+    entity = Entity.find(params['entity']['id'])
+    entity.update(similar: true)
+    head :ok
+  end
+
   def articles
-    @entities = Entity.where(done_article: true, article: Entity::ARTICLES).shuffle
+    @entities = Entity.where(done_article: true, article: Entity::ARTICLES, similar: true).shuffle
+    # .order(:german)
   end
 
   def words
-    @entities = Entity.where(done_article: true, done_german: true).shuffle
+    @entities = Entity.where(done_german: true, similar: [nil,false]).shuffle
+    # .order(:german)
     @dictionary = Entity.pluck(:english)
   end
 
   def words_de
-    @entities = Entity.where(done_article: true, done_german: true).shuffle
+    @entities = Entity.where(done_german: true, similar: [nil,false]).shuffle
     @dictionary = Entity.pluck(:german, :article).map { |g, a| "#{a} #{g}" }
   end
 
   # GET /entities or /entities.json
   def index
-    if params[:article]
-      @entities = Entity.where(article: params[:article])
-      @done = Entity.where(article: params[:article], done_article: true, done_german: true).count
-    else
-      @entities = Entity.all
-    end
+    @entities = if params[:article]
+                  Entity.where(similar: true, article: params[:article])
+                else
+                  Entity.where(similar: true).all
+                end
   end
 
   # GET /entities/1 or /entities/1.json

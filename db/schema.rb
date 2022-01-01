@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_26_041631) do
+ActiveRecord::Schema.define(version: 2021_12_29_001702) do
 
   create_table "entities", force: :cascade do |t|
     t.string "english"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_12_26_041631) do
     t.boolean "done_german"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "similar"
   end
 
 end

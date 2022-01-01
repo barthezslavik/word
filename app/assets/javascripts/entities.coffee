@@ -22,4 +22,16 @@ $(document).ready ->
     console.log(role)
 
     if(role == 'correct')
-      $tr.hide()
+      $tr.css('background', 'lightgrey')
+
+  $('[name=similar]').click ->
+    id = $(this).data('id')
+    data = { entity: { id: id } }
+
+    $tr = $(this).closest('tr')
+    $tr.hide()
+
+    $.ajax
+      type: 'POST',
+      url: '/entities/similar'
+      data: data
