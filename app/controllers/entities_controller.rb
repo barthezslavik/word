@@ -12,22 +12,20 @@ class EntitiesController < ApplicationController
   def similar
     entity = Entity.find(params['entity']['id'])
     entity.update(similar: true)
-    head :ok
+    render json: 2000 - Entity.where(done_german: true, similar: [nil, false]).count
   end
 
   def articles
     @entities = Entity.where(done_article: true, article: Entity::ARTICLES, similar: true).shuffle
-    # .order(:german)
   end
 
   def words
-    @entities = Entity.where(done_german: true, similar: [nil,false]).shuffle
-    # .order(:german)
+    @entities = Entity.where(done_german: true, similar: [nil, false]).shuffle
     @dictionary = Entity.pluck(:english)
   end
 
   def words_de
-    @entities = Entity.where(done_german: true, similar: [nil,false]).shuffle
+    @entities = Entity.where(done_german: true, similar: [nil, false]).shuffle
     @dictionary = Entity.pluck(:german, :article).map { |g, a| "#{a} #{g}" }
   end
 

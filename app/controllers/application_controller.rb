@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
-  before_action :completed
+  before_action :counters
 
-  def completed
-    @done = Entity.unscoped.where(similar: true).count
+  def counters
+    @done = Entity.where(similar: true).count
+    @article = Entity.where(done_article: true, article: Entity::ARTICLES, similar: true).count
   end
 end

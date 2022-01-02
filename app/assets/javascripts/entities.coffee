@@ -19,7 +19,6 @@ $(document).ready ->
   $('[name=article]').click ->
     role = $(this).attr('role')
     $tr = $(this).closest('tr')
-    console.log(role)
 
     if(role == 'correct')
       $tr.css('background', 'lightgrey')
@@ -31,7 +30,11 @@ $(document).ready ->
     $tr = $(this).closest('tr')
     $tr.hide()
 
+    $counter = $('[role=counter]')
+
     $.ajax
       type: 'POST',
       url: '/entities/similar'
       data: data
+      success: (count) ->
+        $counter.text(count)
