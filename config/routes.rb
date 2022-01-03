@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/phrases/done', to: 'phrases#done'
   resources :phrases
   post '/entities/learn', to: 'entities#learn'
   post '/entities/similar', to: 'entities#similar'

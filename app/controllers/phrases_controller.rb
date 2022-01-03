@@ -11,6 +11,24 @@ class PhrasesController < ApplicationController
     render json: Phrase.total
   end
 
+  def done
+    data = []
+    phrases = Phrase.where('`german` LIKE ?', 'Das %')
+    phrases.each do |p|
+      name = begin
+               p.german.split('das ')[1].split(',')[0]
+             rescue StandardError
+               next
+             end
+      entity = Entity.find_by(article: 'Das', german: name)
+      if entity
+        data << entity
+        p.update!(similar: true)
+      end
+    end
+    render json: data
+  end
+
   def parse
     base = "https://app.memrise.com/course/920/5000-german-words-top-87/#{params[:page]}"
     content = open(base).read
