@@ -10,12 +10,13 @@
   </head>
 
   <body>
-  <a href="/">Dictionary (<span role=counter><%= @done %></span>)</a>
-    <a href="/articles" style="margin-left: 30px;">Articles (<%= @article %>)</a>
-    <a href="/words" style="margin-left: 30px;">Words [EN]</a>
-    <a href="/words_de" style="margin-left: 30px;">Words [DE]</a>
+    <a href="/">Dictionary (<span role=counter><%= @done %></span>)</a>
     <a href="/phrases_en" style="margin-left: 30px;">Pharases [EN]</a>
     <a href="/phrases_de" style="margin-left: 30px;">Pharases [DE]</a>
+    <a href="/words" style="margin-left: 30px;">Words [EN]</a>
+    <a href="/words_de" style="margin-left: 30px;">Words [DE]</a>
+    <a href="/articles" style="margin-left: 30px;">Articles (<%= @article %>)</a>
+
     <br>
     <br>
     <%= yield %>

@@ -4,13 +4,13 @@
     <tr>
       <td>
         <input type="checkbox" name="similar_phrase" data-id="<%= entity.id %>">
-        <%= entity.english.truncate(Phrase::TRUNCATE_LEFT) %>
+        <%= entity.german %>
       </td>
-      <% answers = (@dictionary - [entity.german]).shuffle.take(Phrase::ANSWERS - 1) << entity.german %>
+      <% answers = (@dictionary - [entity.english]).shuffle.take(Phrase::ANSWERS - 1) << entity.english %>
       <% answers.shuffle.each do |answer| %>
         <td>
           <label>
-            <input type="checkbox" name="article" role="<%= 'correct' if entity.german == answer %>"><%= answer.truncate(Phrase::TRUNCATE) %>
+            <input type="checkbox" name="article" role="<%= 'correct' if entity.english == answer %>"><%= answer.truncate(Phrase::TRUNCATE) %>
           </label>
         </td>
       <% end %>
