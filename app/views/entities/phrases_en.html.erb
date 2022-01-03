@@ -10,7 +10,7 @@
       <% answers.shuffle.each do |answer| %>
         <td>
           <label>
-            <input type="checkbox" name="article" role="<%= 'correct' if entity.english == answer %>"><%= answer.truncate(40) %>
+            <input type="checkbox" name="article" role="<%= 'correct' if entity.english == answer %>"><%= answer.truncate(Phrase::TRUNCATE) %>
           </label>
         </td>
       <% end %>
