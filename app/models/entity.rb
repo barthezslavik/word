@@ -2,8 +2,8 @@
 
 class Entity < ApplicationRecord
   ARTICLES = %w[Der Die Das].freeze
-  TAKE = 20
-  ANSWERS = 5
+  TAKE = 100
+  ANSWERS = 6
 
   def done?
     done_article && done_german
