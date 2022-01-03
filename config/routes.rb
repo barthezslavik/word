@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/articles', to: 'entities#articles'
   get '/words', to: 'entities#words'
   get '/words_de', to: 'entities#words_de'
+  get '/phrases_en', to: 'entities#phrases_en'
   get '/phrases/parse/:page', to: 'phrases#parse'
   resources :entities
   root to: 'entities#index'

@@ -19,6 +19,11 @@ class EntitiesController < ApplicationController
     @entities = Entity.where(done_article: true, article: Entity::ARTICLES, similar: true).shuffle
   end
 
+  def phrases_en
+    @entities = Phrase.where(similar: [nil, false]).shuffle
+    @dictionary = Phrase.pluck(:english)
+  end
+
   def words
     @entities = Entity.where(done_german: true, similar: true).shuffle
     @dictionary = Entity.pluck(:english)
