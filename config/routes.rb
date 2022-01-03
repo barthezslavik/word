@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :phrases
   post '/entities/learn', to: 'entities#learn'
   post '/entities/similar', to: 'entities#similar'
+  post '/phrases/similar', to: 'phrases#similar'
   get '/articles', to: 'entities#articles'
   get '/words', to: 'entities#words'
   get '/words_de', to: 'entities#words_de'

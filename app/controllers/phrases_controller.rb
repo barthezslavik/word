@@ -8,7 +8,7 @@ class PhrasesController < ApplicationController
   def similar
     entity = Phrase.find(params['entity']['id'])
     entity.update(similar: true)
-    render json: 5000 - Phrase.where(similar: true).count
+    render json: Phrase.total
   end
 
   def parse
