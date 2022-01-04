@@ -1,19 +1,19 @@
-
+<%# if params[:show] %>
 <table>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td><% if params[:article] %><a href="/">[x]</a><% end %></td>
-    </tr>
+<!--    <tr>-->
+<!--      <td></td>-->
+<!--      <td></td>-->
+<!--      <td><%# if params[:article] %><a href="/">[x]</a><%# end %></td>-->
+<!--    </tr>-->
     <% @entities.each do |entity| %>
-      <% next if entity.done_article? %>
+      <%# next if entity.done_article? %>
       <tr>
-        <td><input type="checkbox" name="similar" data-id="<%= entity.id %>"></td>
+<!--        <td><input type="checkbox" name="similar" data-id="<%#= entity.id %>"></td>-->
         <td><%= entity.english %></td>
-        <td><%= check_box_tag 'dictionary', 1, entity.done_article, data: { id: entity.id, role: 'done_article' } %></td>
-        <td><a href="?article=<%= entity.article %>"><%= entity.article %></a></td>
-        <td><%= check_box_tag 'dictionary', 1, entity.done_german, data: { id: entity.id, role: 'done_german' } %></td>
+<!--        <td><%#= check_box_tag 'dictionary', 1, entity.done_article, data: { id: entity.id, role: 'done_article' } %></td>-->
+<!--        <td><a href="?article=<%#= entity.article %>"><%#= entity.article %></a></td>-->
+<!--        <td><%#= check_box_tag 'dictionary', 1, entity.done_german, data: { id: entity.id, role: 'done_german' } %></td>-->
         <td><%= entity.german %></td>
       </tr>
     <% end %>
@@ -22,4 +22,6 @@
 
 <br>
 
-<%= link_to 'New Entity', new_entity_path %>
+<%#= link_to 'New Entity', new_entity_path %>
+
+<%# end %>

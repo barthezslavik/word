@@ -20,13 +20,25 @@ class EntitiesController < ApplicationController
   end
 
   def phrases_en
-    @entities = Phrase.where(similar: [nil, false]).shuffle
-    @dictionary = Phrase.pluck(:german)
+    @entities = Phrase.where(similar: [nil, false])
+    @dictionary = Phrase.all
+    if params[:category]
+      @entities = @entities.where(category: params[:category])
+      @dictionary = @dictionary.where(category: params[:category])
+    end
+    @entities = @entities.shuffle
+    @dictionary = @dictionary.pluck(:german)
   end
 
   def phrases_de
-    @entities = Phrase.where(similar: [nil, false]).shuffle
-    @dictionary = Phrase.pluck(:english)
+    @entities = Phrase.where(similar: [nil, false])
+    @dictionary = Phrase.all
+    if params[:category]
+      @entities = @entities.where(category: params[:category])
+      @dictionary = @dictionary.where(category: params[:category])
+    end
+    @entities = @entities.shuffle
+    @dictionary = @dictionary.pluck(:english)
   end
 
   def words
@@ -41,11 +53,12 @@ class EntitiesController < ApplicationController
 
   # GET /entities or /entities.json
   def index
-    @entities = if params[:article]
-                  Entity.where(similar: true, article: params[:article])
-                else
-                  Entity.where(similar: true).all
-                end
+    # @entities = if params[:article]
+    #               Entity.where(similar: true, article: params[:article])
+    #             else
+    #               Entity.where(similar: true).all
+    #             end
+    @entities = Phrase.where(similar: true).order('updated_at').reverse
   end
 
   # GET /entities/1 or /entities/1.json

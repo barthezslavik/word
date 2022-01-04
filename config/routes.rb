@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/articles', to: 'entities#articles'
   get '/words', to: 'entities#words'
   get '/words_de', to: 'entities#words_de'
+  get '/phrases_en/:category', to: 'entities#phrases_en'
+  get '/phrases_de/:category', to: 'entities#phrases_de'
   get '/phrases_en', to: 'entities#phrases_en'
   get '/phrases_de', to: 'entities#phrases_de'
   get '/phrases/parse/:page', to: 'phrases#parse'
