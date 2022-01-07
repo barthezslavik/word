@@ -1,6 +1,7 @@
-<a href="/phrases_de/noun">Noun</a>
+<a href="/phrases_de/noun">Noun (<%= Phrase.noun %>)</a>
 <a href="/phrases_de/verb" style="margin-left: 30px;">Verb (<%= Phrase.verb %>)</a>
 <a href="/phrases_de/mixed" style="margin-left: 30px;">Mixed (<%= Phrase.mixed %>)</a>
+<a href="/phrases_de/capital" style="margin-left: 30px;">Capital (<%= Phrase.capital %>)</a>
 <a href="/phrases_de/question" style="margin-left: 30px;">Question (<%= Phrase.question %>)</a>
 <a href="/phrases_de/action" style="margin-left: 30px;">Action (<%= Phrase.action %>)</a>
 <a href="/phrases_de/sentence" style="margin-left: 30px;">Sentence (<%= Phrase.sentence %>)</a>
@@ -8,6 +9,8 @@
 
 <br>
 <br>
+
+<% if params[:category] %>
 
 <table>
   <tbody>
@@ -30,3 +33,5 @@
   <% end %>
   </tbody>
 </table>
+
+<% end %>

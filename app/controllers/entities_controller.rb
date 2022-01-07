@@ -21,7 +21,7 @@ class EntitiesController < ApplicationController
 
   def phrases_en
     @entities = Phrase.where(similar: [nil, false])
-    @dictionary = Phrase.all
+    @dictionary = Phrase.where(similar: [nil, false])
     if params[:category]
       @entities = @entities.where(category: params[:category])
       @dictionary = @dictionary.where(category: params[:category])
@@ -32,7 +32,7 @@ class EntitiesController < ApplicationController
 
   def phrases_de
     @entities = Phrase.where(similar: [nil, false])
-    @dictionary = Phrase.all
+    @dictionary = Phrase.where(similar: [nil, false])
     if params[:category]
       @entities = @entities.where(category: params[:category])
       @dictionary = @dictionary.where(category: params[:category])

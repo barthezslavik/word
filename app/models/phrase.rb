@@ -21,6 +21,10 @@ class Phrase < ApplicationRecord
       where(category: 'mixed', similar: [nil, false]).count
     end
 
+    def capital
+      where(category: 'capital', similar: [nil, false]).count
+    end
+
     def question
       where(category: 'question', similar: [nil, false]).count
     end
