@@ -20,24 +20,27 @@ class EntitiesController < ApplicationController
   end
 
   def phrases_en
-    @entities = Phrase.where(similar: [nil, false])
-    @dictionary = Phrase.where(similar: [nil, false])
+    @entities = Phrase.progress
+    @dictionary = Phrase.progress
+
     if params[:category]
       @entities = @entities.where(category: params[:category])
       @dictionary = @dictionary.where(category: params[:category])
     end
-    @entities = @entities.shuffle
+
     @dictionary = @dictionary.pluck(:german)
+    @entities = @entities.shuffle
   end
 
   def phrases_de
-    @entities = Phrase.where(similar: [nil, false])
-    @dictionary = Phrase.where(similar: [nil, false])
+    @entities = Phrase.progress
+    @dictionary = Phrase.progress
+
     if params[:category]
       @entities = @entities.where(category: params[:category])
       @dictionary = @dictionary.where(category: params[:category])
     end
-    @entities = @entities.shuffle
+
     @dictionary = @dictionary.pluck(:english)
   end
 
@@ -53,11 +56,6 @@ class EntitiesController < ApplicationController
 
   # GET /entities or /entities.json
   def index
-    # @entities = if params[:article]
-    #               Entity.where(similar: true, article: params[:article])
-    #             else
-    #               Entity.where(similar: true).all
-    #             end
     @entities = Phrase.where(similar: true).order('updated_at').reverse
   end
 

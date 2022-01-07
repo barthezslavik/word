@@ -1,44 +1,48 @@
 class Phrase < ApplicationRecord
   TAKE = 20
-  ANSWERS = 3
-  TRUNCATE_LEFT = 35
-  TRUNCATE = 35
+  ANSWERS = 4
+  TRUNCATE_LEFT = 25
+  TRUNCATE = 25
 
   class << self
     def total
       Phrase.count - where(similar: true).count
     end
 
+    def progress
+      where(similar: [nil, false])
+    end
+
     def noun
-      where(category: 'noun', similar: [nil, false]).count
+      progress.where(category: 'noun').count
     end
 
     def verb
-      where(category: 'verb', similar: [nil, false]).count
+      progress.where(category: 'verb').count
     end
 
     def mixed
-      where(category: 'mixed', similar: [nil, false]).count
+      progress.where(category: 'mixed').count
     end
 
     def capital
-      where(category: 'capital', similar: [nil, false]).count
+      progress.where(category: 'capital').count
     end
 
     def question
-      where(category: 'question', similar: [nil, false]).count
+      progress.where(category: 'question').count
     end
 
     def action
-      where(category: 'action', similar: [nil, false]).count
+      progress.where(category: 'action').count
     end
 
     def sentence
-      where(category: 'sentence', similar: [nil, false]).count
+      progress.where(category: 'sentence').count
     end
 
     def skip
-      where(category: 'skip', similar: [nil, false]).count
+      progress.where(category: 'skip').count
     end
   end
 end
