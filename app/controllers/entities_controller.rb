@@ -42,16 +42,17 @@ class EntitiesController < ApplicationController
     end
 
     @dictionary = @dictionary.pluck(:english)
+    @entities = @entities.shuffle
   end
 
   def words
     @entities = Entity.where(done_german: true, similar: true).shuffle
-    @dictionary = Entity.pluck(:english)
+    @dictionary = Entity.pluck(:german, :article).map { |g, a| "#{a} #{g}" }
   end
 
   def words_de
     @entities = Entity.where(done_german: true, similar: true).shuffle
-    @dictionary = Entity.pluck(:german, :article).map { |g, a| "#{a} #{g}" }
+    @dictionary = Entity.pluck(:english)
   end
 
   # GET /entities or /entities.json

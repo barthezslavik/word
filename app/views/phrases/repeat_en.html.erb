@@ -1,0 +1,32 @@
+<a href="/phrases_en/noun">Noun (<%= Phrase.noun %>)</a>
+<a href="/phrases_en/verb" style="margin-left: 20px;">Verb (<%= Phrase.verb %>)</a>
+<a href="/phrases_en/mixed" style="margin-left: 20px;">Mixed (<%= Phrase.mixed %>)</a>
+<a href="/phrases_en/capital" style="margin-left: 20px;">Capital (<%= Phrase.capital %>)</a>
+<a href="/phrases_en/question" style="margin-left: 20px;">Question (<%= Phrase.question %>)</a>
+<a href="/phrases_en/action" style="margin-left: 20px;">Action (<%= Phrase.action %>)</a>
+<a href="/phrases_en/sentence" style="margin-left: 20px;">Sentence (<%= Phrase.sentence %>)</a>
+<a href="/phrases_en/skip" style="margin-left: 20px;">Skip (<%= Phrase.skip %>)</a>
+
+<br>
+<br>
+<table>
+  <tbody>
+  <% @phrases.take(Phrase::TAKE).each do |entity| %>
+    <tr>
+      <td>
+        <input type="checkbox" name="similar_phrase" data-id="<%= entity.id %>">
+        <%= without_article(entity.english.truncate(Phrase::TRUNCATE_LEFT), params[:category])  %>
+      </td>
+      <% answers = (@dictionary - [entity.german]).shuffle.take(Phrase::ANSWERS - 1) << entity.german %>
+      <% answers.shuffle.each do |answer| %>
+        <td>
+          <label>
+            <input type="checkbox" name="article" role="<%= 'correct' if entity.german == answer %>">
+            <%= without_article(answer.truncate(Phrase::TRUNCATE), params[:category]) %>
+          </label>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

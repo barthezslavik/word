@@ -2,12 +2,18 @@
   <tbody>
   <% @entities.take(Entity::TAKE).each do |entity| %>
     <tr>
-      <td><input type="checkbox" name="similar" data-id="<%= entity.id %>"></td>
-      <td><%= entity.english %></td>
-      <% correct = "#{entity.article} #{entity.german}" %>
-      <% answers = (@dictionary - [correct]).shuffle.take(Entity::ANSWERS - 1) << correct %>
+      <td <%=raw color(entity.article) %>>
+        <input type="checkbox" name="similar" data-id="<%= entity.id %>">
+        <%= entity.article %>
+        <%= entity.german %>
+      </td>
+      <% answers = (@dictionary - [entity.english]).shuffle.take(Entity::ANSWERS - 1) << entity.english %>
       <% answers.shuffle.each do |answer| %>
-        <td><label <%=raw color(answer) %>><input type="checkbox" name="article" role="<%= 'correct' if correct == answer %>"><%= answer %></label></td>
+        <td>
+          <label>
+            <input type="checkbox" name="article" role="<%= 'correct' if entity.english == answer %>"><%= answer %>
+          </label>
+        </td>
       <% end %>
     </tr>
   <% end %>

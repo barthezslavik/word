@@ -5,12 +5,12 @@ class Phrase < ApplicationRecord
   TRUNCATE = 25
 
   class << self
-    def total
-      Phrase.count - where(similar: true).count
-    end
-
     def progress
       where(similar: [nil, false])
+    end
+
+    def total
+      Phrase.count - where(similar: true).count
     end
 
     def noun

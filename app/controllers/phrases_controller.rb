@@ -11,6 +11,12 @@ class PhrasesController < ApplicationController
     render json: Phrase.total
   end
 
+  def unlearn
+    entity = Phrase.find(params['entity']['id'])
+    entity.update(similar: false)
+    render json: Phrase.total
+  end
+
   def done
     data = []
     phrases = Phrase.where('`german` LIKE ?', 'Das %')
@@ -40,6 +46,16 @@ class PhrasesController < ApplicationController
     end
 
     head :ok
+  end
+
+  def repeat_en
+    @phrases = Phrase.where(similar: true, category: 'noun').shuffle
+    @dictionary = Entity.pluck(:german, :article).map { |g, a| "#{a} #{g}" }
+  end
+
+  def repeat_de
+    @phrases = Phrase.where(similar: true, category: 'noun').shuffle
+    @dictionary = Entity.pluck(:english)
   end
 
   # GET /phrases or /phrases.json
