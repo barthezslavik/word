@@ -20,7 +20,7 @@
       <% answers = (@dictionary - [entity.german]).shuffle.take(Phrase::ANSWERS - 1) << entity.german %>
       <% answers.shuffle.each do |answer| %>
         <td>
-          <label>
+          <label title="<%= answer %>">
             <input type="checkbox" name="article" role="<%= 'correct' if entity.german == answer %>">
             <%= without_article(answer.truncate(Phrase::TRUNCATE), params[:category]) %>
           </label>
